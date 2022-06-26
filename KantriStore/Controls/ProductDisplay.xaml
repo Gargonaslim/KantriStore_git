@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="KantriStore.Controls.ProductDisplay">
+    <ContentView.Content>
+    <pancake:PancakeView Margin="35,0,0,0"
+                         WidthRequest="300"
+                         HeightRequest="350"
+                         CornerRadius="20"
+                         BackgroundColor="{StaticResource ElementBackground}">
+            
+            <Grid>
+
+                <BoxView x:Name="ProductBackground"
+                         VerticalOptions="End"
+                         HorizontalOptions="Start"
+                         WidthRequest="170"
+                         HeightRequest="50"
+                         CornerRadius="0,20,20,0"
+                         BackgroundColor="{StaticResource ElementBackground2}"/>
+
+                <Label x:Name="NameLabel"
+                       WidthRequest="250"
+                       VerticalOptions="End"
+                       HorizontalOptions="Start"
+                       HeightRequest="50"
+                       Margin="20,0,0,60"
+                       Text="{Binding Name}"
+                       Style="{StaticResource ProductFont}"/>
+
+                <StackLayout x:Name="PriceLabel"
+                                Orientation="Horizontal"
+                                VerticalOptions="End"
+                                HorizontalOptions="Start"
+                                Margin="20,0,0,10">
+                        
+                    <Label VerticalTextAlignment="Start"
+                              Style="{StaticResource PriceFont}">
+  
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Price}"/>
+                                <Span Text=" Руб."/>
+                            </FormattedString>
+                        </Label.FormattedText>
+
+                    </Label>
+                        
+                </StackLayout>
+
+
+
+                <Image x:Name="ProductImage"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0"
+                       Source="{Binding ImageUrl}"/>
+
+                <ImageButton x:Name="FavouritesButton"
+                                Margin="0,15,15,0"
+                                CornerRadius="35"
+                                VerticalOptions="Start"
+                                HorizontalOptions="End"
+                                Style="{StaticResource ButtonStyle}"
+                                Source="favourites_icon" />
+
+                <ImageButton x:Name="BasketButton"
+                                Margin="0,0,25,5"
+                                VerticalOptions="End"
+                                HorizontalOptions="End"
+                                Style="{StaticResource SmallButtonStyle}"
+                                Source="black_basket_icon"
+                             Clicked="TapAddToBasketGestureRecognizer_Tapped">
+                    <!--ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapAddToBasketGestureRecognizer_Tapped"/>
+                    </ImageButton.GestureRecognizers>-->
+                </ImageButton>
+
+
+            </Grid>
+
+            <pancake:PancakeView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapProductGestureRecognizer_Tapped"/>
+                <TapGestureRecognizer Tapped="TapProductGestureRecognizer_Tapped_2"/>
+                <TapGestureRecognizer Tapped="TapProductGestureRecognizer_Tapped_3"/>
+            </pancake:PancakeView.GestureRecognizers>
+        </pancake:PancakeView>
+    </ContentView.Content>
+</ContentView>

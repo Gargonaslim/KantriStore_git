@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodel="clr-namespace:KantriStore.ViewModels"
+             x:DataType="viewmodel:ApplicationViewModel"
+             x:Class="KantriStore.Controls.PreviousSelectedItemDisplay">
+  <ContentView.Content>
+        <Grid>
+            <BoxView BackgroundColor="{StaticResource ElementBackground}"
+                     Margin="20,0,20,0"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     WidthRequest="400"
+                     HeightRequest="150"
+                     CornerRadius="30">
+
+            </BoxView>
+
+            <Image VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   Margin="0,0,250,0"
+                   Source="{Binding PreviousSeelectedProduct.ImageUrl}"
+                   Scale=".7"/>
+
+            <Label Margin="95,15,0,0"
+                   HorizontalOptions="Center"
+                   WidthRequest="200"
+                   Style="{StaticResource ProductFont}"
+                   Text="{Binding PreviousSeelectedProduct.Name}"/>
+
+            <Label Margin="30,90,0,0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource PriceFont}">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding PreviousSeelectedProduct.Price}"/>
+                        <Span Text=" Руб."/>
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+
+            <ImageButton BackgroundColor="{StaticResource ElementBackground}"
+                         Source="black_basket_icon"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         Padding="6"
+                         Margin="0,0,45,25"
+                         CornerRadius="10"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

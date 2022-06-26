@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodel="clr-namespace:KantriStore.ViewModels"
+             x:DataType="viewmodel:ApplicationViewModel"
+             x:Class="KantriStore.Controls.ProductDisplayPopover">
+  <ContentView.Content>
+        <Grid x:Name="ProductPopoverGrid"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <ImageButton BackgroundColor="{StaticResource ElementBackground}"
+                         Padding="4"
+                         CornerRadius="10"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         Margin="35,0,0,0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         Source="back_icon"
+                         Clicked="Back_Clicked"/>
+            
+            <ImageButton BackgroundColor="{StaticResource ElementBackground}"
+                         Padding="4"
+                         CornerRadius="10"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         Margin="0,0,85,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Source="share_icon"/>
+
+            <ImageButton BackgroundColor="{StaticResource ScreenBackground}"
+                         Padding="4"
+                         CornerRadius="10"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         Margin="0,0,35,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Source="black_favourites_icon"/>
+
+            <BoxView x:Name="BackgroundPanel"
+                     Grid.Row="2"
+                     BackgroundColor="{StaticResource ElementBackground}"
+                     VerticalOptions="End"
+                     HeightRequest="380"/>
+
+            <Grid Grid.Row="2"
+                  BackgroundColor="{StaticResource ElementBackground}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0"
+                       Style="{StaticResource TitleFont}"
+                       Text="{Binding SeelectedProduct.Name}"
+                       Margin="35,0,0,0"/>
+
+                <Label Grid.Row="1"
+                       Style="{StaticResource ProductFont}"
+                       Text="300 обзоров"
+                       Margin="35,0,0,0"/>
+
+                <BoxView Grid.Row="2"
+                         BackgroundColor="{StaticResource ScreenBackground}"
+                         CornerRadius="15"
+                         Margin="0,0,20,0"
+                         HorizontalOptions="Center"
+                         WidthRequest="380"/>
+
+                <Label Grid.Row="2"
+                       Style="{StaticResource TitleFont}"
+                       Text="Цвет: Хаки&#10;Основная ткань: Верх -Taslan Membrane&#10;Утеплитель: Insulate 200 гр./м2&#10;Подкладка: Foilgrid&#10;Мембрана: 5 000/5 000"
+                       Margin="35,5,0,0"
+                       FontSize="15"/>
+
+                <BoxView Grid.Row="2"
+                         BackgroundColor="{StaticResource ElementBackground2}"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Start"
+                         WidthRequest="365"
+                         HeightRequest="4"
+                         CornerRadius="30"
+                         Margin="32,90,0,0"/>
+
+                <ImageButton Grid.Row="3"
+                             BackgroundColor="{StaticResource ElementBackground}"
+                             Source="black_basket_icon"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             HeightRequest="50"
+                             WidthRequest="50"
+                             Padding="6"
+                             Margin="20,0,0,25"
+                             CornerRadius="10"/>
+
+                <BoxView Grid.Row="3"
+                         BackgroundColor="{StaticResource ElementBackground2}"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End"
+                         WidthRequest="230"
+                         HeightRequest="53"
+                         CornerRadius="25"
+                         Margin="80,0,0,45"/>
+
+                <Label Grid.Row="3"
+                       Style="{StaticResource PriceFont}"
+                       FontSize="40"
+                       VerticalOptions="End"
+                       Margin="88,0,0,50">
+                    
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding SeelectedProduct.Price}"/>
+                            <Span Text=" Руб."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    
+                </Label>
+            </Grid>
+            
+            <pancake:PancakeView Grid.Row="2"
+                                 BackgroundColor="{StaticResource ElementBackground2}"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 HeightRequest="100"
+                                 WidthRequest="100"
+                                 CornerRadius="50"
+                                 Margin="0,0,20,70"/>
+
+            <Label Grid.Row="2"
+                   Style="{StaticResource TitleFont}"
+                   FontSize="23"
+                   Text="Купить&#10;сейчас"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   Margin="0,0,2,36"
+                   TextColor="{StaticResource ScreenBackground}"/>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

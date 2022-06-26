@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:KantriStore.ViewModels"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="KantriStore.Views.CatigoriesPage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ScreenBackground">#FCF7F1</Color>
+            <Color x:Key="ElementBackground">#FFE4CD</Color>
+            <Color x:Key="ColorTitleText">#000000</Color>
+            <Color x:Key="ElementBackground2">#1C2B2D</Color>
+            <Color x:Key="ColorProductText">#000000</Color>
+            <Color x:Key="ColorPriceText">#F9813A</Color>
+
+            <Style x:Key="TitleFont" TargetType="{Type Label}">
+                <Setter Property="FontFamily" Value="try-clother.ttf"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="{StaticResource Key=ColorTitleText}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Корзина"
+                 IconImageSource="basket_icon.png"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
+    
+    <AbsoluteLayout Background="{StaticResource ScreenBackground}">
+
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="SizeProportional">
+            <Grid>
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding Categories}"
+                            Direction="Row"
+                            HeightRequest="1180"
+                            HorizontalOptions="Center"
+                            Wrap="Wrap">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <pancake:PancakeView Margin="14"
+                                             WidthRequest="200"
+                                             HeightRequest="250"
+                                             CornerRadius="20"
+                                             BackgroundColor="{StaticResource ElementBackground}">
+                                <Grid>
+                                    <Image Source="{Binding ImageUrl}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="180"
+                                           Margin="0,0,0,40"/>
+                                    
+                                    <Label Text="{Binding NameCategory}"
+                                           VerticalOptions="End"
+                                           HorizontalOptions="Center"
+                                           Margin="0,0,0,15"
+                                           Style="{StaticResource TitleFont}"/>
+                                </Grid>
+                        </pancake:PancakeView>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            </Grid>
+        </ScrollView>
+    </AbsoluteLayout>
+</ContentPage>

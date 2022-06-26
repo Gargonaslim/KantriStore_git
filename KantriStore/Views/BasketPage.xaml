@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodel="clr-namespace:KantriStore.ViewModels"
+             x:Class="KantriStore.Views.BasketPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <BoxView x:Name="BackgroundScreen"
+                     AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="1,1,1,1"
+                     BackgroundColor="{StaticResource ElementBackground}">
+                
+            </BoxView>
+            
+            <BoxView x:Name="BackgroundBasket"
+                     AbsoluteLayout.LayoutBounds="0,-50,1,2"
+                     AbsoluteLayout.LayoutFlags="SizeProportional"
+                     BackgroundColor="{StaticResource ElementBackground2}">
+                
+            </BoxView>
+
+            <Grid x:Name="OrderStatus"
+                  AbsoluteLayout.LayoutBounds="0,0"
+                  Opacity="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <BoxView BackgroundColor="{StaticResource ElementBackground2}"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Start"
+                         WidthRequest="210"
+                         HeightRequest="50"
+                         Margin="0,0,0,5"
+                         CornerRadius="0,0,0,20"/>
+                
+                <Label Text="Корзина"
+                       Style="{StaticResource TitleFont}"
+                       TextColor="White"
+                       VerticalOptions="Start"
+                       Margin="45,0,0,0"/>
+
+                
+
+                <Label Grid.Row="1"
+                       Text="Подтверждение заказа"
+                       Style="{StaticResource TitleFont}"
+                       VerticalOptions="End"
+                       Margin="35,0,0,0"/>
+
+            </Grid>
+
+            <Grid x:Name="BasketDa"
+                  AbsoluteLayout.LayoutBounds="0,180"
+                  Opacity="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Список товаров"
+                       Style="{StaticResource TitleFont}"
+                       VerticalOptions="Start"
+                       TextColor="White"
+                       Margin="35,0,0,0"/>
+
+                <ScrollView Grid.Row="1"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            HeightRequest="400">
+
+                    <FlexLayout 
+                                BindableLayout.ItemsSource="{Binding Items}"
+                                Direction="Row"
+                                WidthRequest="2000"
+                                Wrap="Wrap">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+
+                                <pancake:PancakeView Margin="14"
+                                             WidthRequest="415"
+                                             HeightRequest="140"
+                                             CornerRadius="20"
+                                             BackgroundColor="{StaticResource ElementBackground}">
+                                    <Grid>
+                                        <BoxView BackgroundColor="{StaticResource ElementBackground2}"
+                                                 VerticalOptions="End"
+                                                 HorizontalOptions="End"
+                                                 WidthRequest="285"
+                                                 HeightRequest="65"
+                                                 CornerRadius="20,0,0,0"
+                                                 Margin="0,0,0,0"/>
+                                        
+                                        <Image Source="{Binding ProductItem.ImageUrl}"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Center"
+                                               HeightRequest="150"
+                                               Margin="0,0,280,0"
+                                               Scale=".9"/>
+
+                                        <Label Text="{Binding ProductItem.Name}"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Center"
+                                               WidthRequest="300"
+                                               FontSize="20"
+                                               Margin="140,20,0,0"
+                                               Style="{StaticResource TitleFont}"/>
+
+                                        <Label HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Margin="80,70,0,0"
+                                               Style="{StaticResource PriceFont}">
+
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Total}"/>
+                                                    <Span Text=" Руб. "/>
+                                                    <Span Text="| "/>
+                                                    <Span Text="{Binding Count}"/>
+                                                    <Span Text=" шт."/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+
+                                        </Label>
+
+
+                                    </Grid>
+                                </pancake:PancakeView>
+
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </FlexLayout>
+
+                </ScrollView>
+
+                <Label Grid.Row="2"
+                       HorizontalOptions="Start"
+                       Text="Итоговая цена:"
+                       Style="{StaticResource TitleFont}"
+                       TextColor="White"
+                       Margin="20,0,0,0">
+                    
+                </Label>
+
+                <Label Grid.Row="2"
+                                               HorizontalOptions="End"
+                                               Margin="0,0,20,0"
+                                               Style="{StaticResource TitleFont}"
+                                               TextColor="White">
+
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding TotalAllItems}"/>
+                            <Span Text=" Руб."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+
+                <BoxView x:Name="Order"
+                                    Grid.Row="3"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    WidthRequest="300"
+                                    HeightRequest="80"
+                                    CornerRadius="20"
+                                    BackgroundColor="{StaticResource ColorBasket}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped111"></TapGestureRecognizer>
+                    </BoxView.GestureRecognizers>
+                    
+                    
+                </BoxView>
+
+                <Label Grid.Row="3"
+                       HorizontalOptions="Center"
+                       Style="{StaticResource TitleFont}"
+                       TextColor="White"
+                       Text="Оформить заказ"
+                       Margin="0,15,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped111"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </Grid>
+
+            <BoxView x:Name="OrderSucc"
+                     AbsoluteLayout.LayoutFlags="SizeProportional"
+                     AbsoluteLayout.LayoutBounds="500,0,1,1"
+                     BackgroundColor="{StaticResource ElementBackground}">
+                
+            </BoxView>
+
+            <Label x:Name="Da"
+                   AbsoluteLayout.LayoutBounds="700,300"
+                   Text="Спасибо за покупку"
+                   Style="{StaticResource TitleFont}">
+                
+            </Label>
+
+            <BoxView AbsoluteLayout.LayoutBounds="700,500"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="300"
+                     HeightRequest="100"
+                     CornerRadius="20"
+                     Margin="70,0,0,0"
+                     
+                     x:Name="BackHomeBox"
+                     BackgroundColor="{StaticResource ElementBackground2}">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Label x:Name="BackHome"
+                   AbsoluteLayout.LayoutBounds="700,500"
+                   Text="Вернуться на главную страницу"
+                   Style="{StaticResource TitleFont}"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   WidthRequest="250"
+                   Margin="110,0,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:kantristore="clr-namespace:KantriStore" 
+             xmlns:models="clr-namespace:KantriStore.Models"
+             xmlns:views="clr-namespace:KantriStore.Views"
+             Title="FlyoutMenu"
+             x:Class="KantriStore.FlyoutMenuPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ScreenBackground">#FCF7F1</Color>
+            <Color x:Key="ElementBackground">#FFE4CD</Color>
+            <Color x:Key="ColorTitleText">#000000</Color>
+            <Color x:Key="ElementBackground2">#1C2B2D</Color>
+            <Color x:Key="ColorProductText">#000000</Color>
+            <Color x:Key="ColorPriceText">#F9813A</Color>
+
+            <Style x:Key="TitleFont" TargetType="{Type Label}">
+                <Setter Property="FontFamily" Value="try-clother.ttf"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="TextColor" Value="{StaticResource Key=ColorTitleText}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <StackLayout BackgroundColor='#1C2B2D'>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <BoxView CornerRadius="0,0,120,300"
+                     BackgroundColor="{StaticResource ColorPriceText}"/>
+
+            <Label Text="Cовершай покупки где угодно"
+                   Style="{StaticResource TitleFont}"
+                   TextColor="White"
+                   Margin="0,40,0,0"/>
+
+            <Label Text="Регистрируйся"
+                   Style="{StaticResource TitleFont}"
+                   TextColor="White"
+                   VerticalOptions="End"
+                   Margin="30,0,0,70"/>
+
+            <ListView x:Name="listview" x:FieldModifier="public"
+                      BackgroundColor="{StaticResource Key=ElementBackground2}"
+                      Grid.Row="1">
+                <ListView.ItemsSource>
+                    <Array Type="{Type models:FlyoutItemPage}">
+                        <models:FlyoutItemPage Title="Главная" IconSource="home_icon.png" TargetPage="{Type kantristore:HomePage}"/>
+                        <models:FlyoutItemPage Title="Категории" IconSource="catigories_icon.png" TargetPage="{Type views:CatigoriesPage}"/>
+                        <models:FlyoutItemPage Title="Аккаунт" IconSource="account_icon.png" TargetPage="{Type kantristore:HomePage}"/>
+                        <models:FlyoutItemPage Title="Корзина" IconSource="black_basket_icon.png" TargetPage="{Type kantristore:HomePage}"/>
+                    </Array>
+                </ListView.ItemsSource>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+
+                                <BoxView BackgroundColor="{StaticResource ElementBackground}"
+                                            CornerRadius="0,8,0,20"/>
+                                <Image Source="{Binding IconSource}"
+                                       HorizontalOptions="Start"/>
+                            
+                                <Label Text="{Binding Title}"
+                                       Style="{StaticResource Key=TitleFont}"
+                                       Margin="30,0,0,0"/>
+                            
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </StackLayout>
+    
+</ContentPage>
