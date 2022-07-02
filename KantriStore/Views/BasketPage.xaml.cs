@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using KantriStore.ViewModels;
 using KantriStore.Models;
 using System.IO;
+using System.Linq;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
