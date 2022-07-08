@@ -14,22 +14,32 @@ using KantriStore.Views;
 
 namespace KantriStore
 {
+    
     public partial class HomePage : ContentPage
     {
-        ApplicationViewModel viewModel;
-        BasketViewModel BasketForTransfer;
+        public ApplicationViewModel viewModel;
+        public static BasketViewModel BasketFromHomePage;
+
         const int animationSpeed = 250;
         public HomePage()
         {
             InitializeComponent();
             viewModel = new ApplicationViewModel();
+            BasketFromHomePage = viewModel.Basket;
+            BindingContext = viewModel;
+        }
+
+        public HomePage(BasketViewModel basket)
+        {
+            InitializeComponent();
+            viewModel = new ApplicationViewModel();
+            viewModel.Basket = basket;
             BindingContext = viewModel;
         }
 
 
         protected override async void OnAppearing()
         {
-
             await viewModel.GetProducts("https://kantriwebapp.azurewebsites.net/api/SaleProducts/", viewModel.SaleProducts);
             await viewModel.GetProducts("https://kantriwebapp.azurewebsites.net/api/HuntFishProducts/", viewModel.HuntFishProducts);
             await viewModel.GetProducts("https://kantriwebapp.azurewebsites.net/api/SpecifiedProducts/", viewModel.SpecifiedProducts);
@@ -37,6 +47,7 @@ namespace KantriStore
             viewModel.initialized = true;
             base.OnAppearing();
         }
+
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -158,9 +169,7 @@ namespace KantriStore
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            BasketForTransfer = viewModel.Basket;
-            await Navigation.PushAsync(new BasketPage(ref BasketForTransfer));
-
+            await Navigation.PushAsync(new BasketPage());
         }
 
         private void ProductDisplay_AddToCartClicked(object sender, EventArgs e)

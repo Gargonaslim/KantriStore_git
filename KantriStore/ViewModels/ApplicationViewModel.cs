@@ -40,7 +40,7 @@ namespace KantriStore.ViewModels
         public IList<Product> SpecifiedProducts { get; set; }
         public IList<Product> HuntFishProducts { get; set; }
 
-        public IList<Auth> Auths { get; set; }
+       // public IList<Auth> Auths { get; set; }
 
         public ApplicationViewModel()
         {
@@ -50,7 +50,7 @@ namespace KantriStore.ViewModels
             SpecifiedProducts = new ObservableRangeCollection<Product>();
             HuntFishProducts = new ObservableRangeCollection<Product>();
             Basket = new BasketViewModel();
-            Auths = new ObservableRangeCollection<Auth>();
+            //Auths = new ObservableRangeCollection<Auth>();
             PreviousSeelectedProduct = new Product
             {
                 Id = 0,

@@ -43,7 +43,7 @@ namespace KantriStore.Models
 
                 if (item is ShopingCartItem productItem)
                 {
-                    if (productItem.ProductItem == itemToFind)
+                    if (productItem.ProductItem.Name == itemToFind.Name) 
                         return productItem;
                 }
             }
@@ -70,6 +70,12 @@ namespace KantriStore.Models
                 Items.Insert(0, cartItem);
             }
 
+            UpdateTotal();
+        }
+
+        public void RemoveItem(ShopingCartItem item)
+        {
+            Items.Remove(item);
             UpdateTotal();
         }
 

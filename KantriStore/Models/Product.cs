@@ -14,6 +14,21 @@ namespace KantriStore.Models
         public bool IsFeatured { get; set; }
         public string Category { get; set; }
 
+        public Product()
+        {
+
+        }
+
+        public Product(int id, string name, string imageUrl, decimal price, bool isFeatured, string category)
+        {
+            Id = id;
+            Name = name;
+            ImageUrl = imageUrl;
+            Price = price;
+            IsFeatured = isFeatured;
+            Category = category;
+        }
+
         /*public override bool Equals(object obj)
         {
             ProductViewModel products = obj as ProductViewModel;

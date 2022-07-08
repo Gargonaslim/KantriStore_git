@@ -14,10 +14,10 @@ namespace KantriStore.Views
     public partial class BasketPage : ContentPage
     {
         const int animationSpeed = 1200;
-        public BasketPage(ref BasketViewModel Basket)
+        public BasketPage()
         {
             InitializeComponent();
-            BindingContext = Basket;
+            BindingContext = HomePage.BasketFromHomePage;
             ExpandToFillBasket();
         }
 
@@ -46,7 +46,11 @@ namespace KantriStore.Views
         {
             await BackHomeBox.ScaleTo(1.5);
             await BackHomeBox.ScaleTo(1);
-            await Navigation.PushAsync(new HomePage());
+        }
+
+        private void deleteButton_Clicked(object sender, EventArgs e)
+        {
+            //HomePage.BasketFromHomePage.RemoveItem()
         }
     }
 }

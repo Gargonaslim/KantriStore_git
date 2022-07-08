@@ -130,6 +130,17 @@
 
                                         </Label>
 
+                                        <ImageButton x:Name="deleteButton"
+                                                     Source="delete_icon"
+                                                     BackgroundColor="{StaticResource ElementBackground}"
+                                                     HorizontalOptions="End"
+                                                     VerticalOptions="End"
+                                                     Margin="0,0,0,0"
+                                                     CornerRadius="20"
+                                                     Padding="10"
+                                                     Clicked="deleteButton_Clicked">
+                                            
+                                        </ImageButton>
 
                                     </Grid>
                                 </pancake:PancakeView>
@@ -151,10 +162,10 @@
                 </Label>
 
                 <Label Grid.Row="2"
-                                               HorizontalOptions="End"
-                                               Margin="0,0,20,0"
-                                               Style="{StaticResource TitleFont}"
-                                               TextColor="White">
+                       HorizontalOptions="End"
+                       Margin="0,0,20,0"
+                       Style="{StaticResource TitleFont}"
+                       TextColor="White">
 
                     <Label.FormattedText>
                         <FormattedString>

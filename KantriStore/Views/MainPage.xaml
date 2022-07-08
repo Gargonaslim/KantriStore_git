@@ -14,7 +14,7 @@
         >
         <NavigationPage >
             <x:Arguments>
-                <local:HomePage/> 
+                <local:HomePage/>
             </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>

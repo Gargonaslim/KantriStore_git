@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using KantriStore.ViewModels;
 using KantriStore.Services;
 using KantriStore.Models;
+using KantriStore.Views;
 
 namespace KantriStore
 {
@@ -25,7 +26,10 @@ namespace KantriStore
             var item = e.SelectedItem as FlyoutItemPage;
             if (item != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
+                if (item.TargetPage.FullName != "KantriStore.HomePage")
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage, HomePage.BasketFromHomePage));
+                else
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage, CatigoriesPage.BasketFromCategories));
                 flyout.listview.SelectedItem = null;
                 IsPresented = false;
             }

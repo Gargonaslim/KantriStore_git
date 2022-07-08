@@ -8,17 +8,20 @@ using Xamarin.Forms;
 using KantriStore.ViewModels;
 using KantriStore.Models;
 using Xamarin.Forms.Xaml;
+using KantriStore.Views;
 
 namespace KantriStore.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CatigoriesPage : ContentPage
     {
+        public static BasketViewModel BasketFromCategories;
         CategoryViewModel viewModel;
 
-        public CatigoriesPage()
+        public CatigoriesPage(BasketViewModel Basket)
         {
             InitializeComponent();
+            BasketFromCategories = Basket;
             viewModel = new CategoryViewModel();
             BindingContext = viewModel;
         }
